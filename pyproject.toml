@@ -1,0 +1,24 @@
+[project]
+name = "verdanta"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic-settings>=2.0",
+    "pyyaml",
+    "pandas",
+    "pyarrow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pyspark==3.5.0",          # pin to your DBR's Spark version
+    "delta-spark==3.2.0",      # must match the pyspark minor
+    "pytest", "chispa", "ruff",
+]
+azure = ["azure-identity", "azure-storage-file-datalake"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
