@@ -1,0 +1,5 @@
+env: dev
+landing_root: "/Volumes/verdanta_dev/bronze/landing"
+source_root: "C:/Users/vladc/verdanta-source-extracts"
+catalog: "verdanta_dev"
+checkpoint_base_path: "/Volumes/verdanta_dev/bronze/checkpoints"
