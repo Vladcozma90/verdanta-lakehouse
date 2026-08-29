@@ -3,26 +3,33 @@ name = "verdanta"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
+    "pandas==2.2.3",
+    "numpy==1.26.4",
     "pydantic-settings>=2.0",
-    "pyyaml",
-    "pandas",
-    "pyarrow",
     "pydantic>=2.13.4",
-    "datetime>=6.0",
-    "databricks-cli>=0.18.0",
-    "pyspark>=3.5.0",
-    "dbt-core>=1.12.0",
-    "dbt-databricks>=1.10.9",
+    "pyyaml",
+    "pyarrow",
     "python-dotenv>=1.2.2",
+    "apache-airflow>=3.3.1",
+    "apache-airflow-providers-databricks>=7.11.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pyspark==3.5.0",          # pin to your DBR's Spark version
-    "delta-spark==3.2.0",      # must match the pyspark minor
-    "pytest", "chispa", "ruff",
+    "pyspark==3.5.0",
+    "delta-spark==3.2.0",
+    "pytest",
+    "chispa",
+    "ruff",
 ]
-azure = ["azure-identity", "azure-storage-file-datalake"]
+azure = [
+    "azure-identity",
+    "azure-storage-file-datalake",
+]
+dbt = [
+    "dbt-core==1.12.0",
+    "dbt-databricks==1.10.9",
+]
 
 [tool.ruff]
 line-length = 100

@@ -2,7 +2,7 @@ import logging
 import uuid
 
 from pyspark.sql import DataFrame, SparkSession
-from pyspark.sql.functions import current_timestamp, input_file_name, lit
+from pyspark.sql.functions import col, current_timestamp, lit
 
 from src.verdanta.common.config import Settings
 from src.verdanta.common.paths import landing_dir
@@ -28,7 +28,7 @@ def _build_stage_bronze_employees(
     df = (
         source_df
         .withColumn("run_id", lit(run_id))
-        .withColumn("_file_name", input_file_name())
+        .withColumn("_file_name", col("_metadata.file_path"))
         .withColumn("_source_system", lit("hr"))
         .withColumn("_ingest_ts", current_timestamp())
     )

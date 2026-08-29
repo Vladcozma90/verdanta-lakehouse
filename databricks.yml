@@ -1,0 +1,188 @@
+bundle:
+  name: verdanta-lakehouse
+
+resources:
+  jobs:
+    land_to_landing:
+      name: verdanta_land_to_landing
+      tasks:
+        - task_key: land
+          spark_python_task:
+            python_file: jobs/land/run_land.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--ingest_date"
+              - "{{job.parameters.ingest_date}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+      environments:
+        - environment_key: default_env
+          spec:
+            client: "2"
+            dependencies:
+              - python-dotenv
+              - pydantic-settings
+              - pyyaml
+      parameters:
+        - name: env
+          default: dev
+        - name: ingest_date
+          default: ""
+
+    bootstrap_tables:
+      name: verdanta_bootstrap_tables
+      tasks:
+        - task_key: bootstrap
+          spark_python_task:
+            python_file: jobs/bootstrap/run_bootstrap.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+      environments:
+        - environment_key: default_env
+          spec:
+            client: "2"
+            dependencies:
+              - python-dotenv
+              - pydantic-settings
+              - pyyaml
+      parameters:
+        - name: env
+          default: dev
+
+    bronze_ingestion_daily:
+      name: verdanta_bronze_ingestion_daily
+      tasks:
+        - task_key: customers
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_customers.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+        - task_key: products
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_products.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+        - task_key: orders
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_orders.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+        - task_key: order_items
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_order_items.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+        - task_key: returns
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_returns.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+      environments:
+        - environment_key: default_env
+          spec:
+            client: "2"
+            dependencies:
+              - python-dotenv
+              - pydantic-settings
+              - pyyaml
+      parameters:
+        - name: env
+          default: dev
+
+    bronze_ingestion_weekly:
+      name: verdanta_bronze_ingestion_weekly
+      tasks:
+        - task_key: employees
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_employees.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+        - task_key: suppliers
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_suppliers.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+      environments:
+        - environment_key: default_env
+          spec:
+            client: "2"
+            dependencies:
+              - python-dotenv
+              - pydantic-settings
+              - pyyaml
+      parameters:
+        - name: env
+          default: dev
+
+    bronze_ingestion_stores:
+      name: verdanta_bronze_ingestion_stores
+      tasks:
+        - task_key: stores
+          spark_python_task:
+            python_file: jobs/bronze/run_bronze_stores.py
+            parameters:
+              - "--env"
+              - "{{job.parameters.env}}"
+              - "--repo_root"
+              - "${workspace.file_path}"
+          environment_key: default_env
+      environments:
+        - environment_key: default_env
+          spec:
+            client: "2"
+            dependencies:
+              - python-dotenv
+              - pydantic-settings
+              - pyyaml
+      parameters:
+        - name: env
+          default: dev
+
+targets:
+  dev:
+    mode: production
+    default: true
+    workspace:
+      host: https://dbc-9dabf5c9-756d.cloud.databricks.com
+      root_path: /Workspace/Users/vladcozma90@gmail.com/.bundle/${bundle.name}/${bundle.target}
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-9dabf5c9-756d.cloud.databricks.com
+      root_path: /Workspace/Users/vladcozma90@gmail.com/.bundle/${bundle.name}/${bundle.target}
+      

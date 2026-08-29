@@ -1,0 +1,5 @@
+astronomer-cosmos
+apache-airflow
+apache-airflow-providers-databricks
+dbt-core==1.12.0
+dbt-databricks==1.10.9

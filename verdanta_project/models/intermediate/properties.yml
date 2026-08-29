@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_order_items_enriched
+    columns:
+      - name: order_item_id
+        data_tests: [unique, not_null]
+
+  - name: int_order_items_fx
+    columns:
+      - name: fx_rate_to_eur
+        data_tests: [not_null]
+      - name: line_net_amount_eur
+        data_tests: [not_null]
+
+  - name: int_returns_enriched
+    columns:
+      - name: return_id
+        data_tests: [unique, not_null]
+
+  - name: int_returns_fx
+    columns:
+      - name: fx_rate_to_eur
+        data_tests: [not_null]
+
+  - name: int_product_suppliers
+    columns:
+      - name: product_id
+        data_tests: [not_null]
+      - name: supplier_id
+        data_tests: [not_null]

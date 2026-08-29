@@ -1,0 +1,151 @@
+version: 2
+
+models:
+  - name: stg_erp__orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - relationships:
+              to: ref('stg_crm__customers')
+              field: customer_id
+              config:
+                severity: warn
+      - name: store_id
+        data_tests:
+          - relationships:
+              to: ref('stg_reference__stores')
+              field: store_id
+              config:
+                severity: warn
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['COMPLETED', 'CANCELLED', 'PENDING', 'REFUNDED']
+      - name: sales_channel
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['STORE', 'ONLINE', 'MARKETPLACE']
+
+  - name: stg_erp__order_items
+    columns:
+      - name: order_item_id
+        data_tests: [unique, not_null]
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_erp__orders')
+              field: order_id
+      - name: product_id
+        data_tests:
+          - relationships:
+              to: ref('stg_pim__products')
+              field: product_id
+      - name: quantity
+        data_tests:
+          - not_null
+          - non_negative
+
+  - name: stg_erp__returns
+    columns:
+      - name: return_id
+        data_tests: [unique, not_null]
+      - name: order_item_id
+        data_tests:
+          - relationships:
+              to: ref('stg_erp__order_items')
+              field: order_item_id
+      - name: product_id
+        data_tests:
+          - relationships:
+              to: ref('stg_pim__products')
+              field: product_id
+      - name: return_reason_code
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['DAMAGED_IN_TRANSIT', 'NOT_AS_DESCRIBED', 'CHANGED_MIND',
+                         'WRONG_ITEM_SENT', 'FAULTY', 'LATE_DELIVERY']
+
+  - name: stg_crm__customers
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: country_code
+        data_tests:
+          - relationships:
+              to: ref('seed_countries')
+              field: country_code
+      - name: loyalty_tier
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM']
+      - name: customer_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'INACTIVE', 'CLOSED']
+
+  - name: stg_hr__employees
+    columns:
+      - name: employee_id
+        data_tests: [unique, not_null]
+      - name: store_id
+        data_tests:
+          - relationships:
+              to: ref('stg_reference__stores')
+              field: store_id
+              config:
+                severity: warn
+      - name: employment_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'TERMINATED']
+
+  - name: stg_pim__products
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+      - name: category_l1
+        data_tests: [not_null]
+      - name: vat_class
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['STANDARD', 'REDUCED']
+      - name: product_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'DISCONTINUED']
+
+  - name: stg_reference__stores
+    columns:
+      - name: store_id
+        data_tests: [unique, not_null]
+      - name: country_code
+        data_tests:
+          - relationships:
+              to: ref('seed_countries')
+              field: country_code
+      - name: store_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['OPEN', 'CLOSED']
+
+  - name: stg_pim__suppliers
+    columns:
+      - name: supplier_id
+        data_tests: [unique, not_null]
+      - name: supplier_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'INACTIVE']

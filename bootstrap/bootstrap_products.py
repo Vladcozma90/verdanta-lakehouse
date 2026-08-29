@@ -24,7 +24,7 @@ def bootstrap_bronze_products(spark: SparkSession, load_settings: Settings) -> N
                 product_name          STRING,
                 brand                 STRING,
                 is_own_brand          STRING,
-                category              STRUCT
+                category              STRUCT<
                                            category_l1: STRING,
                                            category_l2: STRING,
                                            category_l3: STRING
@@ -33,7 +33,7 @@ def bootstrap_bronze_products(spark: SparkSession, load_settings: Settings) -> N
                 unit_cost_eur         STRING,
                 list_price_eur        STRING,
                 vat_class             STRING,
-                attributes            STRUCT
+                attributes            STRUCT<
                                            colour: STRING,
                                            material: STRING,
                                            weight_kg: STRING,

@@ -1,5 +1,0 @@
-env: local
-landing_root: "file:///home/vladc/verdanta-lakehouse/data/landing"
-source_root:  "/home/vladc/verdanta-source-extracts"
-catalog: "verdanta_local"
-checkpoint_base_path: "file:///D:/dev/verdanta-lakehouse/data/checkpoints"

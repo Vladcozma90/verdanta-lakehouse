@@ -68,3 +68,63 @@ Happy modeling!
 [0m13:40:15.665407 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ED2A01DF40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ED28D79430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ED2A5D2FF0>]}
 [0m13:40:15.666406 [debug] [MainThread]: Flushing usage events
 [0m13:40:16.183467 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:08:24.748098 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F29BEE3C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F288270B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F2D7FC8C0>]}
+
+
+============================== 15:08:24.753954 | 7988b6f7-1c4f-44c1-b8cf-d11be6784c24 ==============================
+[0m15:08:24.753954 [info ] [MainThread]: Running with dbt=1.12.0
+[0m15:08:24.753954 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'D:\\dev\\verdanta-lakehouse', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'invocation_command': 'dbt seed', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'logs'}
+[0m15:08:24.753954 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path D:\dev\verdanta-lakehouse\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m15:08:24.753954 [debug] [MainThread]: Command `dbt seed` failed at 15:08:24.753954 after 0.20 seconds
+[0m15:08:24.753954 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F29BEE3C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F2B1F81A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000023F2BC467B0>]}
+[0m15:08:24.753954 [debug] [MainThread]: Flushing usage events
+[0m15:08:25.454889 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:46:37.431751 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE74658F20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE74B9E330>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE72193A70>]}
+
+
+============================== 12:46:37.432798 | 5f89f87e-188a-4ee6-b537-084108456b55 ==============================
+[0m12:46:37.432798 [info ] [MainThread]: Running with dbt=1.12.0
+[0m12:46:37.432798 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'D:\\dev\\verdanta-lakehouse', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run --select staging', 'log_path': 'logs'}
+[0m12:46:37.432798 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path D:\dev\verdanta-lakehouse\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m12:46:37.432798 [debug] [MainThread]: Command `dbt run` failed at 12:46:37.432798 after 0.18 seconds
+[0m12:46:37.432798 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE73F66030>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE74B9E330>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EE74658F20>]}
+[0m12:46:37.432798 [debug] [MainThread]: Flushing usage events
+[0m12:46:38.052489 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:47:18.224246 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D052F8800>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D05212270>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D06CD9700>]}
+
+
+============================== 12:47:18.224246 | 7d4af089-2f38-4717-bd60-842c1197104a ==============================
+[0m12:47:18.224246 [info ] [MainThread]: Running with dbt=1.12.0
+[0m12:47:18.224246 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'D:\\dev\\verdanta-lakehouse', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'invocation_command': 'dbt run --select stg_crm__customers', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'logs'}
+[0m12:47:18.224246 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path D:\dev\verdanta-lakehouse\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m12:47:18.224246 [debug] [MainThread]: Command `dbt run` failed at 12:47:18.224246 after 0.12 seconds
+[0m12:47:18.230271 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D01BFB230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D06D071D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000018D052F8800>]}
+[0m12:47:18.230271 [debug] [MainThread]: Flushing usage events
+[0m12:47:18.763334 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:42:53.190855 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B4B02120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B52208F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B7806AB0>]}
+
+
+============================== 11:42:53.190855 | da04f377-df04-4790-b921-269fb93b9fa6 ==============================
+[0m11:42:53.190855 [info ] [MainThread]: Running with dbt=1.12.0
+[0m11:42:53.200031 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'D:\\dev\\verdanta-lakehouse', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt deps', 'log_path': 'logs'}
+[0m11:42:53.201045 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path D:\dev\verdanta-lakehouse\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m11:42:53.201655 [debug] [MainThread]: Command `dbt deps` failed at 11:42:53.201045 after 0.12 seconds
+[0m11:42:53.201655 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B9218E30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B71095B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2B9448AD0>]}
+[0m11:42:53.201655 [debug] [MainThread]: Flushing usage events
+[0m11:42:53.711221 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -8,4 +8,12 @@ verdanta_project:
       threads: 1
       token: "{{ env_var('DBT_DATABRICKS_TOKEN') }}"
       type: databricks
+    prod:
+      catalog: verdanta_prod
+      host: dbc-9dabf5c9-756d.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/6b5884a11a6d64b4
+      schema: silver
+      threads: 4
+      token: "{{ env_var('DBT_DATABRICKS_TOKEN_PROD') }}"
+      type: databricks
   target: dev

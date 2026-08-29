@@ -32,5 +32,23 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   verdanta_project:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
+      +schema: silver
+    intermediate:
+      +materialized: view
+      +schema: silver
+    marts:
+      +materialized: table
+      +schema: gold
+
+
+seeds:
+  verdanta_project:
+    +schema: silver
+    seed_vat_rates:
+      +column_types:
+        vat_rate: decimal(5,4)
+    seed_fx_rates_eur:
+      +column_types:
+        exchange_rate: decimal(10,4)

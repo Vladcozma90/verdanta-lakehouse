@@ -1,5 +1,5 @@
 env: prod
 landing_root: abfss://container@storage_account.dfs.core.windows.net/landing
-source_root:  "/home/vladc/verdanta-source-extracts"
+source_root:  "/Volumes/verdanta_dev/bronze/source_extracts"
 catalog: "verdanta_prod"
 checkpoint_base_path: abfss://container@storage_account.dfs.core.windows.net/checkpoint

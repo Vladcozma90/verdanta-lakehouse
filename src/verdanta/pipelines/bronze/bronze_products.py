@@ -2,7 +2,7 @@ import logging
 import uuid
 
 from pyspark.sql import DataFrame, SparkSession
-from pyspark.sql.functions import current_timestamp, input_file_name, lit
+from pyspark.sql.functions import col, current_timestamp, lit
 
 from src.verdanta.common.config import Settings
 from src.verdanta.common.paths import landing_dir
@@ -25,7 +25,7 @@ def _build_stage_bronze_products(
     df = (
         source_df
         .withColumn("run_id", lit(run_id))
-        .withColumn("_file_name", input_file_name())
+        .withColumn("_file_name", col("_metadata.file_path"))
         .withColumn("_source_system", lit("pim"))
         .withColumn("_ingest_ts", current_timestamp())
         
@@ -55,6 +55,12 @@ def ingest_bronze_products(
                 .option("cloudFiles.schemaLocation", cfg["schema_location"])
                 .option("cloudFiles.schemaEvolutionMode", "addNewColumns")
                 .option("cloudFiles.inferColumnTypes", "false")
+                .option(
+                        "cloudFiles.schemaHints",
+                        "category STRUCT<category_l1:STRING,category_l2:STRING,category_l3:STRING>, "
+                        "attributes STRUCT<colour:STRING,material:STRING,weight_kg:STRING,is_seasonal:STRING,peak_season:STRING>, "
+                        "supplier_ids ARRAY<STRING>"
+                )
                 .option("rescuedDataColumn", "_rescued_data")
                 .load(cfg["landing_path"])
             )

@@ -3,8 +3,8 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from verdanta.common.config import load_settings
-from verdanta.common.paths import SOURCES, landing_file
+from src.verdanta.common.config import load_settings
+from src.verdanta.common.paths import SOURCES, landing_file
 
 logger = logging.getLogger(__name__)
 

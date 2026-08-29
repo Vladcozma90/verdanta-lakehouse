@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 def _build_config(load_settings: Settings) -> dict[str, str]:
     return {
-        "bronze_order_items": f"{load_settings.catalog}.bronze.bronze_order_items",
+        "bronze_order_items": f"{load_settings.catalog}.bronze.erp_order_items",
     }
 
 def bootstrap_bronze_order_items(spark: SparkSession, load_settings: Settings) -> None:

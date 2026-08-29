@@ -8,14 +8,14 @@ logger = logging.getLogger(__name__)
 
 def _build_config(load_settings: Settings) -> dict[str, str]:
     return {
-        "bronze_orders" : f"{load_settings.catalog}.bronze.bronze_orders",
+        "bronze_orders" : f"{load_settings.catalog}.bronze.erp_orders",
     }
 
 def bootstrap_bronze_orders(spark: SparkSession, load_settings: Settings) -> None:
 
     cfg = _build_config(load_settings=load_settings)
 
-    logger.info("Creating/validating erp_plan_catalog in schema %s", f"{load_settings.catalog}.{load_settings.schemas['bronze']}")
+    logger.info("Creating/validating table %s", cfg["bronze_orders"])
 
     spark.sql(
             f"""
