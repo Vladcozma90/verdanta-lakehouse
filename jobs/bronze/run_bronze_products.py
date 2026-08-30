@@ -28,7 +28,7 @@ def run_ingest_bronze_products() -> None:
 
     logger.info("bronze products run start | env=%s", args.env)
     ingest_bronze_products(spark=spark, load_settings=settings)
-    logger.info("broze products run complete | env=%s", args.env)
+    logger.info("bronze products run complete | env=%s", args.env)
 
 if __name__ == '__main__':
     run_ingest_bronze_products()
