@@ -1,0 +1,65 @@
+{"timestamp":"2026-08-31T18:48:41.680861Z","level":"warning","event":"section/key [openlineage/namespace] not found in config","logger":"airflow.sdk._shared.configuration.parser","filename":"parser.py","lineno":1360}
+{"timestamp":"2026-08-31T18:48:41.984318Z","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-08-31T18:48:41.986426Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/verdanta_daily.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-08-31T18:48:42.036215Z","level":"warning","event":"Skipping masking for a secret as it's too short (<5 chars)","logger":"airflow.sdk._shared.secrets_masker.secrets_masker","filename":"secrets_masker.py","lineno":577}
+{"timestamp":"2026-08-31T18:48:42.041920Z","level":"info","event":"::group::Cosmos DAG parsing logs","logger":"cosmos.converter","filename":"converter.py","lineno":321}
+{"timestamp":"2026-08-31T18:48:42.044016Z","level":"info","event":"Cosmos cache dir resolved to /tmp/cosmos/verdanta_daily__dbt_daily","logger":"cosmos.converter","filename":"converter.py","lineno":346}
+{"timestamp":"2026-08-31T18:48:42.044339Z","level":"info","event":"Trying to parse the dbt project using dbt ls cache cosmos_cache__verdanta_daily__dbt_daily...","logger":"cosmos.dbt.graph","filename":"graph.py","lineno":869}
+{"timestamp":"2026-08-31T18:48:42.182739Z","level":"info","event":"Cosmos performance: time to calculate cache identifier cosmos_cache__verdanta_daily__dbt_daily for current version: 0.1276126809998459","logger":"cosmos.cache","filename":"cache.py","lineno":401}
+{"timestamp":"2026-08-31T18:48:42.182935Z","level":"info","event":"Cosmos performance [c0f2c375ab6a|263]: The cache size for cosmos_cache__verdanta_daily__dbt_daily is 81420","logger":"cosmos.dbt.graph","filename":"graph.py","lineno":886}
+{"timestamp":"2026-08-31T18:48:42.186115Z","level":"info","event":"Cosmos performance: Cache hit for cosmos_cache__verdanta_daily__dbt_daily - 39a8c4b6e19a7b5e14cfea47af7dbd90,f50552a3029f27b43be4a74a78877897","logger":"cosmos.dbt.graph","filename":"graph.py","lineno":898}
+{"timestamp":"2026-08-31T18:48:42.186439Z","level":"info","event":"Total nodes: 91","logger":"cosmos.dbt.graph","filename":"graph.py","lineno":799}
+{"timestamp":"2026-08-31T18:48:42.186547Z","level":"info","event":"Total filtered nodes: 91","logger":"cosmos.dbt.graph","filename":"graph.py","lineno":800}
+{"timestamp":"2026-08-31T18:48:42.186640Z","level":"info","event":"Cosmos performance (verdanta_daily__dbt_daily) - [c0f2c375ab6a|263]: It took 0.142s to parse the dbt project for DAG using LoadMode.DBT_LS_CACHE","logger":"cosmos.converter","filename":"converter.py","lineno":371}
+{"timestamp":"2026-08-31T18:48:42.273354Z","level":"info","event":"Cosmos performance (verdanta_daily__dbt_daily) - [c0f2c375ab6a|263]: It took 0.0867s to build the Airflow DAG.","logger":"cosmos.converter","filename":"converter.py","lineno":423}
+{"timestamp":"2026-08-31T18:48:42.273557Z","level":"info","event":"::endgroup::Cosmos DAG parsing logs","logger":"cosmos.converter","filename":"converter.py","lineno":430}
+{"timestamp":"2026-08-31T18:48:42.274222Z","level":"warning","event":"Using Variable.get from `airflow.models` is deprecated.Please use `get` on Variable from sdk(`airflow.sdk.Variable`) instead","category":"UserWarning","filename":"/home/airflow/.local/lib/python3.13/site-packages/airflow/models/variable.py","lineno":158,"logger":"py.warnings"}
+{"timestamp":"2026-08-31T18:48:43.622707Z","level":"info","event":"dbtRunner is available. Using dbtRunner for invoking dbt.","logger":"cosmos.operators.base","filename":"local.py","lineno":295}
+{"timestamp":"2026-08-31T18:48:43.623714Z","level":"info","event":"Cloning project to writable temp directory /tmp/tmp2gguy9iw from /opt/airflow/dbt/verdanta_project","logger":"cosmos.operators.base","filename":"local.py","lineno":519}
+{"timestamp":"2026-08-31T18:48:43.633067Z","level":"info","event":"Partial parse is enabled and the latest partial parse file is /opt/airflow/dbt/verdanta_project/target/partial_parse.msgpack","logger":"cosmos.operators.base","filename":"local.py","lineno":539}
+{"timestamp":"2026-08-31T18:48:43.689902Z","level":"info","event":"Profile caching is enable.","logger":"cosmos.config","filename":"config.py","lineno":399}
+{"timestamp":"2026-08-31T18:48:43.699621Z","level":"info","event":"Profile found in cache using profile: /tmp/cosmos/profile/1922feb8ca1009fb7100ee4968074ed46f63552d8d832d8d38dda5163b9c3f18/profiles.yml.","logger":"cosmos.config","filename":"config.py","lineno":379}
+{"timestamp":"2026-08-31T18:48:43.706584Z","level":"info","event":"Trying to run dbtRunner with:\n ['deps', '--project-dir', '/tmp/tmp2gguy9iw', '--profiles-dir', '/tmp/cosmos/profile/1922feb8ca1009fb7100ee4968074ed46f63552d8d832d8d38dda5163b9c3f18', '--profile', 'verdanta_project', '--target', 'dev', '--no-static-parser']\n in /tmp/tmp2gguy9iw","logger":"cosmos.dbt.runner","filename":"runner.py","lineno":95}
+{"timestamp":"2026-08-31T18:48:43.856452Z","level":"info","event":"\u001b[0m18:48:43  Running with dbt=1.12.0","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:44.252354Z","level":"info","event":"\u001b[0m18:48:44  Installing dbt-labs/dbt_utils","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:44.729772Z","level":"info","event":"\u001b[0m18:48:44  Installed from version 1.4.1","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:44.730286Z","level":"info","event":"\u001b[0m18:48:44  Up to date!","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:45.620093Z","level":"info","event":"Trying to run dbtRunner with:\n ['test', '--select', 'fct_return', '--project-dir', '/tmp/tmp2gguy9iw', '--profiles-dir', '/tmp/cosmos/profile/1922feb8ca1009fb7100ee4968074ed46f63552d8d832d8d38dda5163b9c3f18', '--profile', 'verdanta_project', '--target', 'dev', '--no-static-parser']\n in /tmp/tmp2gguy9iw","logger":"cosmos.dbt.runner","filename":"runner.py","lineno":95}
+{"timestamp":"2026-08-31T18:48:45.632126Z","level":"info","event":"\u001b[0m18:48:45  Running with dbt=1.12.0","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:46.682763Z","level":"warning","event":"Valid config keys have changed in V2:\n* 'allow_population_by_field_name' has been renamed to 'validate_by_name'","category":"UserWarning","filename":"/home/airflow/.local/lib/python3.13/site-packages/pydantic/_internal/_config.py","lineno":383,"logger":"py.warnings"}
+{"timestamp":"2026-08-31T18:48:46.939804Z","level":"info","event":"\u001b[0m18:48:46  Registered adapter: databricks=1.10.9","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:49.888797Z","level":"info","event":"\u001b[0m18:48:49  Unable to do partial parsing because an error occurred. Switching to full reparse.","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:53.744797Z","level":"info","event":"\u001b[0m18:48:53  [\u001b[33mWARNING\u001b[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:53.745244Z","level":"info","event":"functionality","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:53.745453Z","level":"info","event":"Found top-level arguments to test `relationships` defined on 'stg_erp__orders'","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:53.745690Z","level":"info","event":"in package 'verdanta_project' (models/staging/properties.yml). Arguments to","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:53.745888Z","level":"info","event":"generic tests should be nested under the `arguments` property.","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:54.880920Z","level":"info","event":"\u001b[0m18:48:54  Found 22 models, 96 data tests, 3 seeds, 2 snapshots, 8 sources, 844 macros","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:54.892189Z","level":"info","event":"\u001b[0m18:48:54","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:54.892837Z","level":"info","event":"\u001b[0m18:48:54  Concurrency: 1 threads (target='dev')","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:54.893441Z","level":"info","event":"\u001b[0m18:48:54","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:48:58.354038Z","level":"info","event":"\u001b[0m18:48:58  1 of 6 START test not_null_fct_return_customer_sk .............................. [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:00.391968Z","level":"info","event":"\u001b[0m18:49:00  1 of 6 PASS not_null_fct_return_customer_sk .................................... [\u001b[32mPASS\u001b[0m in 2.04s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:00.401818Z","level":"info","event":"\u001b[0m18:49:00  2 of 6 START test not_null_fct_return_date_sk .................................. [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:02.279779Z","level":"info","event":"\u001b[0m18:49:02  2 of 6 PASS not_null_fct_return_date_sk ........................................ [\u001b[32mPASS\u001b[0m in 1.88s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:02.281232Z","level":"info","event":"\u001b[0m18:49:02  3 of 6 START test not_null_fct_return_product_sk ............................... [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:04.124445Z","level":"info","event":"\u001b[0m18:49:04  3 of 6 PASS not_null_fct_return_product_sk ..................................... [\u001b[32mPASS\u001b[0m in 1.84s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:04.126740Z","level":"info","event":"\u001b[0m18:49:04  4 of 6 START test not_null_fct_return_return_id ................................ [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:05.749458Z","level":"info","event":"\u001b[0m18:49:05  4 of 6 PASS not_null_fct_return_return_id ...................................... [\u001b[32mPASS\u001b[0m in 1.62s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:05.762340Z","level":"info","event":"\u001b[0m18:49:05  5 of 6 START test not_null_fct_return_store_sk ................................. [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:07.313766Z","level":"info","event":"\u001b[0m18:49:07  5 of 6 PASS not_null_fct_return_store_sk ....................................... [\u001b[32mPASS\u001b[0m in 1.56s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:07.315881Z","level":"info","event":"\u001b[0m18:49:07  6 of 6 START test unique_fct_return_return_id .................................. [RUN]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:08.899042Z","level":"info","event":"\u001b[0m18:49:08  6 of 6 PASS unique_fct_return_return_id ........................................ [\u001b[32mPASS\u001b[0m in 1.58s]","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:08.908852Z","level":"info","event":"\u001b[0m18:49:08","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:08.919798Z","level":"info","event":"\u001b[0m18:49:08  Finished running 6 data tests in 0 hours 0 minutes and 14.01 seconds (14.01s).","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.032636Z","level":"info","event":"\u001b[0m18:49:09","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.033522Z","level":"info","event":"\u001b[0m18:49:09  \u001b[32mCompleted successfully\u001b[0m","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.034555Z","level":"info","event":"\u001b[0m18:49:09","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.035832Z","level":"info","event":"\u001b[0m18:49:09  Done. PASS=6 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=6","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.036903Z","level":"info","event":"\u001b[0m18:49:09  [\u001b[33mWARNING\u001b[0m][DeprecationsSummary]: Deprecated functionality","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.037145Z","level":"info","event":"Summary of encountered deprecations:","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.037391Z","level":"info","event":"- MissingArgumentsPropertyInGenericTestDeprecation: 9 occurrences","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.037613Z","level":"info","event":"To see all deprecation instances instead of just the first occurrence of each,","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.037856Z","level":"info","event":"run command again with the `--show-all-deprecations` flag. You may also need to","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.038103Z","level":"info","event":"run with `--no-partial-parse` as some deprecations are only encountered during","logger":"task.stdout"}
+{"timestamp":"2026-08-31T18:49:09.038322Z","level":"info","event":"parsing.","logger":"task.stdout"}

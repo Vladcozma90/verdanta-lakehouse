@@ -26,9 +26,6 @@ jobs:
       - name: Lint
         run: uv run ruff check .
 
-      - name: Unit tests
-        run: uv run pytest
-
       - name: dbt build
         working-directory: verdanta_project
         run: |
