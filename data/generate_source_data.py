@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Verdanta Group - synthetic source-system data generator
 =======================================================
