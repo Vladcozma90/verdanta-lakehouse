@@ -69,6 +69,7 @@ def verdanta_daily():
                     "snap_pim_products+",
                     "dim_country",
                     "dim_date",
+                    "assert_no_overlapping_scd2_versions",
                ]
           ),
      )

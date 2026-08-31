@@ -1,20 +1,28 @@
-name: CD
-
+# cd.yml — add alongside the existing "deploy" job (rename that one deploy-dev for clarity)
 on:
   push:
     branches: [main]
+  workflow_dispatch:   # ← enables manual trigger
 
 jobs:
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - uses: databricks/setup-cli@main
+      - run: databricks bundle deploy -t dev
 
-      - name: Install Databricks CLI
-        uses: databricks/setup-cli@main
-
-      - name: Deploy bundle to dev
-        run: databricks bundle deploy -t dev
+  deploy-prod:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: databricks/setup-cli@main
+      - run: databricks bundle deploy -t prod
