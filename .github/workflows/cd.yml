@@ -1,5 +1,5 @@
 # cd.yml — add alongside the existing "deploy" job (rename that one deploy-dev for clarity)
-Name: CD
+name: CD
 
 on:
   push:
