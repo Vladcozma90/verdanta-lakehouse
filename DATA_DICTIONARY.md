@@ -10,7 +10,7 @@ Source data is synthetic and deterministic (`SEED = 42`) —
 | Property | Value |
 |---|---|
 | History window | 2024-08-01 → 2026-08-01 |
-| Orders / order lines | ~55,000 / ~130,000 |
+| Orders / order lines | ~55,000  /  ~130,000 |
 | Customers / products / employees / stores / suppliers | 12,035 / 1,500 / 520 / 48 / 40 |
 
 ---
