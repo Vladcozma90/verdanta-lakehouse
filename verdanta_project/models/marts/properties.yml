@@ -2,6 +2,12 @@ version: 2
 
 models:
   - name: dim_employee
+    description: >
+      One row per employee, full rebuild on every run — the source is a full
+      snapshot and attribute changes are corrections, not events worth
+      versioning. Includes an unknown member row (employee_id = '-1',
+      employment_status = 'UNKNOWN') that facts resolve to when there's no
+      real employee context, such as online orders.
     columns:
       - name: employee_sk
         data_tests: [unique, not_null]
@@ -14,6 +20,10 @@ models:
                 values: ['ACTIVE', 'TERMINATED', 'UNKNOWN']
 
   - name: dim_store
+    description: >
+      One row per store, full rebuild on every run. Includes an unknown
+      member row (store_id = '-1') for orders with no store context —
+      online and marketplace channels.
     columns:
       - name: store_sk
         data_tests: [unique, not_null]
@@ -26,6 +36,9 @@ models:
                 values: ['OPEN', 'CLOSED', 'UNKNOWN']
 
   - name: dim_supplier
+    description: >
+      One row per supplier, full rebuild on every run. Includes an unknown
+      member row (supplier_id = '-1') for products with no linked supplier.
     columns:
       - name: supplier_sk
         data_tests: [unique, not_null]
@@ -38,6 +51,16 @@ models:
                 values: ['ACTIVE', 'INACTIVE', 'UNKNOWN']
 
   - name: dim_customer
+    description: >
+      Type 2 slowly changing dimension, built from the snap_crm_customers
+      snapshot — one row per version of a customer, tracking loyalty tier,
+      city, and country over time. customer_sk is hashed on
+      (customer_id, valid_from), so it's unique per version, not per
+      customer; facts join on valid_from/valid_to to resolve the version
+      that was current at the transaction's timestamp, not the customer's
+      current tier. Includes an unknown member row (customer_id = '-1')
+      for the ~40 orders whose customer_id has no match in the source — a
+      known planted defect, see DATA_DICTIONARY.md.
     columns:
       - name: customer_sk
         data_tests: [unique, not_null]
@@ -54,6 +77,13 @@ models:
         data_tests: [not_null]
 
   - name: dim_product
+    description: >
+      Type 2 slowly changing dimension, built from the snap_pim_products
+      snapshot — one row per version of a product, tracking price,
+      category, and status over time. Same effective-dated join pattern as
+      dim_customer: facts resolve to the version valid at the transaction
+      date via valid_from/valid_to, not the product's current state.
+      Includes an unknown member row (product_id = '-1').
     columns:
       - name: product_sk
         data_tests: [unique, not_null]
@@ -75,13 +105,22 @@ models:
         data_tests: [not_null]
 
   - name: dim_country
+    description: >
+      Conformed dimension built from seed_countries, referenced by both
+      dim_customer and dim_store rather than duplicating country name/region
+      as flat columns in each. Includes an unknown member row
+      (country_code = 'XX').
     columns:
       - name: country_sk
         data_tests: [unique, not_null]
       - name: country_code
         data_tests: [unique, not_null]
-  
+
   - name: dim_date
+    description: >
+      Static calendar dimension, one row per day, generated in dbt rather
+      than sourced from any system. Covers the full history window plus
+      buffer for future incremental runs.
     columns:
       - name: date_sk
         data_tests: [unique, not_null]
@@ -89,6 +128,14 @@ models:
         data_tests: [unique, not_null]
 
   - name: fct_order_item
+    description: >
+      Transaction fact — one row per line item on a customer order.
+      Incremental, merged on order_item_id. customer_sk and product_sk are
+      resolved via an effective-dated join against the SCD2 dims (the
+      version current at order_ts); store_sk and employee_sk fall back to
+      each dimension's unknown member for online/marketplace orders. Every
+      FK is guaranteed non-null by construction, so not_null is the correct
+      test here — no relationships test is needed.
     columns:
       - name: order_item_id
         data_tests: [unique, not_null]
@@ -102,8 +149,13 @@ models:
         data_tests: [not_null]
       - name: employee_sk
         data_tests: [not_null]
-        
+
   - name: fct_return
+    description: >
+      Transaction fact — one row per returned line item on a customer
+      order. Incremental, merged on return_id. Dimension keys are resolved
+      as of the return date, not the original purchase date — a return is
+      treated as its own financial event.
     columns:
       - name: return_id
         data_tests: [unique, not_null]
