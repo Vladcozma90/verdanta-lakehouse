@@ -13,6 +13,8 @@ star schema.
 
 **[Data dictionary and planted data-quality defects →](./DATA_DICTIONARY.md)**
 
+**[Live dbt docs / lineage graph →](https://vladcozma90.github.io/verdanta-lakehouse/)**
+
 ---
 
 ## Stack
