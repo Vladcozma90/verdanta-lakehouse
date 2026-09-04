@@ -44,7 +44,7 @@ def verdanta_weekly():
     bronze_weekly = DatabricksRunNowOperator(
         task_id="bronze_ingestion_weekly",
         databricks_conn_id="databricks_default",
-        job_name="verdanta_bronze_ingestion_weekly",
+        job_name=f"verdanta_bronze_ingestion_weekly_{VERDANTA_ENV}",
         job_parameters={"env": VERDANTA_ENV},
     )
 

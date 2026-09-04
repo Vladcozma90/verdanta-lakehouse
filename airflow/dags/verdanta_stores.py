@@ -43,7 +43,7 @@ def verdanta_stores():
     bronze_stores = DatabricksRunNowOperator(
         task_id = "bronze_ingestion_stores",
         databricks_conn_id="databricks_default",
-        job_name="verdanta_bronze_ingestion_stores",
+        job_name=f"verdanta_bronze_ingestion_stores_{VERDANTA_ENV}",
         job_parameters={"ENV": VERDANTA_ENV},
     )
 

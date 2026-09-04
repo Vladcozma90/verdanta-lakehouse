@@ -4,7 +4,7 @@ bundle:
 resources:
   jobs:
     land_to_landing:
-      name: verdanta_land_to_landing
+      name: verdanta_land_to_landing_${bundle.target}
       tasks:
         - task_key: land
           spark_python_task:
@@ -32,7 +32,7 @@ resources:
           default: ""
 
     bootstrap_tables:
-      name: verdanta_bootstrap_tables
+      name: verdanta_bootstrap_tables_${bundle.target}
       tasks:
         - task_key: bootstrap
           spark_python_task:
@@ -56,7 +56,7 @@ resources:
           default: dev
 
     bronze_ingestion_daily:
-      name: verdanta_bronze_ingestion_daily
+      name: verdanta_bronze_ingestion_daily_${bundle.target}
       tasks:
         - task_key: customers
           spark_python_task:
@@ -116,7 +116,7 @@ resources:
           default: dev
 
     bronze_ingestion_weekly:
-      name: verdanta_bronze_ingestion_weekly
+      name: verdanta_bronze_ingestion_weekly_${bundle.target}
       tasks:
         - task_key: employees
           spark_python_task:
@@ -149,7 +149,7 @@ resources:
           default: dev
 
     bronze_ingestion_stores:
-      name: verdanta_bronze_ingestion_stores
+      name: verdanta_bronze_ingestion_stores_${bundle.target}
       tasks:
         - task_key: stores
           spark_python_task:
@@ -185,4 +185,3 @@ targets:
     workspace:
       host: https://dbc-9dabf5c9-756d.cloud.databricks.com
       root_path: /Workspace/Users/vladcozma90@gmail.com/.bundle/${bundle.name}/${bundle.target}
-      
