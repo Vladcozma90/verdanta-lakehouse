@@ -43,14 +43,14 @@ def verdanta_daily():
      land = DatabricksRunNowOperator(
           task_id="land_to_landing",
           databricks_conn_id="databricks_default",
-          job_name="verdanta_land_to_landing",
+          job_name=f"verdanta_land_to_landing_{VERDANTA_ENV}",
           job_parameters={"env": VERDANTA_ENV, "ingest_date": "{{ ds }}"}
      )
 
      bronze_daily = DatabricksRunNowOperator(
           task_id="bronze_ingestion_daily",
           databricks_conn_id="databricks_default",
-          job_name="verdanta_bronze_ingestion_daily",
+          job_name=f"verdanta_bronze_ingestion_daily_{VERDANTA_ENV}",
           job_parameters={"env": VERDANTA_ENV}
      )
 
