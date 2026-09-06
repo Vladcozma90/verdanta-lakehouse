@@ -15,7 +15,9 @@ star schema.
 
 **[Live dbt docs / lineage graph →](https://vladcozma90.github.io/verdanta-lakehouse/)**
 
----
+## Proof it runs
+See [`docs/screenshots/`](./docs/screenshots/) for successful pipeline and test runs.
+
 
 ## Stack
 
@@ -63,4 +65,3 @@ deploys to `dev` automatically; `prod` deploys are manually triggered.
 ## Known gaps
 
 - Unit tests for the PySpark transform functions — planned, not yet written.
-- `dbt docs` site — not yet published.
