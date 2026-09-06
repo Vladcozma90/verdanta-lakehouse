@@ -7,7 +7,7 @@ from cosmos import DbtTaskGroup, ProfileConfig, ProjectConfig, RenderConfig
 from cosmos.profiles import DatabricksTokenProfileMapping
 
 DBT_PROJECT_DIR = "/opt/airflow/dbt/verdanta_project"
-VERDANTA_ENV = Variable.get("verdanta_var", "dev")
+VERDANTA_ENV = Variable.get("verdanta_env", "dev")
 
 project_config = ProjectConfig(DBT_PROJECT_DIR)
 
@@ -44,15 +44,15 @@ def verdanta_stores():
         task_id = "bronze_ingestion_stores",
         databricks_conn_id="databricks_default",
         job_name=f"verdanta_bronze_ingestion_stores_{VERDANTA_ENV}",
-        job_parameters={"ENV": VERDANTA_ENV},
+        job_parameters={"env": VERDANTA_ENV},
     )
 
     dbt_stores = DbtTaskGroup(
-        group_id="dbt_sources",
+        group_id="dbt_stores",
         profile_config=profile_config,
         project_config=project_config,
         render_config=RenderConfig(
-            select=["stg_reference_stores+"]
+            select=["stg_reference__stores+"]
         )
     )
 
