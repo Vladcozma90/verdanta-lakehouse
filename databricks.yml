@@ -25,6 +25,8 @@ resources:
               - python-dotenv
               - pydantic-settings
               - pyyaml
+              - azure-identity
+              - azure-storage-file-datalake
       parameters:
         - name: env
           default: dev
