@@ -7,8 +7,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      DBT_DATABRICKS_TOKEN: ${{ secrets.DBT_DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,8 +24,10 @@ jobs:
       - name: Lint
         run: uv run ruff check .
 
-      - name: dbt build
+      - name: dbt build (dev)
         working-directory: verdanta_project
+        env:
+          DBT_DATABRICKS_TOKEN: ${{ secrets.DBT_DATABRICKS_TOKEN }}
         run: |
           uv run dbt deps
           uv run dbt build --target dev

@@ -1,10 +1,9 @@
-# cd.yml — add alongside the existing "deploy" job (rename that one deploy-dev for clarity)
 name: CD
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # ← enables manual trigger
+  workflow_dispatch:
 
 jobs:
   deploy-dev:
@@ -15,8 +14,12 @@ jobs:
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: databricks/setup-cli@main
-      - run: databricks bundle deploy -t dev
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Deploy bundle to dev
+        run: databricks bundle deploy -t dev
 
   deploy-prod:
     runs-on: ubuntu-latest
@@ -26,5 +29,28 @@ jobs:
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: databricks/setup-cli@main
-      - run: databricks bundle deploy -t prod
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Deploy bundle to prod
+        run: databricks bundle deploy -t prod
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install dbt
+        run: |
+          uv sync
+          uv pip install -e ".[dbt]"
+
+      - name: dbt build (prod)
+        working-directory: verdanta_project
+        env:
+          DBT_DATABRICKS_TOKEN: ${{ secrets.DBT_DATABRICKS_TOKEN_PROD }}
+        run: |
+          uv run dbt deps
+          uv run dbt build --target prod
