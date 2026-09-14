@@ -7,7 +7,6 @@ from azure.storage.filedatalake import DataLakeServiceClient
 
 
 def upload(local: Path, target_url: str) -> None:
-    # abfss://<container>@<account>.dfs.core.windows.net/<path>
     parsed = urlparse(target_url)
     container, account_host = parsed.netloc.split("@")
     file_path = parsed.path.lstrip("/")

@@ -59,9 +59,3 @@ docker compose up -d
 
 CI runs lint and `dbt build` on every pull request. Merging to `main`
 deploys to `dev` automatically; `prod` deploys are manually triggered.
-
----
-
-## Known gaps
-
-- Unit tests for the PySpark transform functions — planned, not yet written.
