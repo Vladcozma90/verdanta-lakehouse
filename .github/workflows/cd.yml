@@ -5,6 +5,13 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: cd-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
@@ -14,10 +21,8 @@ jobs:
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
-
       - name: Deploy bundle to dev
         run: databricks bundle deploy -t dev
 
@@ -29,24 +34,18 @@ jobs:
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
-
       - name: Deploy bundle to prod
         run: databricks bundle deploy -t prod
-
       - name: Install uv
         uses: astral-sh/setup-uv@v3
-
       - name: Set up Python
         run: uv python install 3.11
-
       - name: Install dbt
         run: |
           uv sync
           uv pip install -e ".[dbt]"
-
       - name: dbt build (prod)
         working-directory: verdanta_project
         env:
